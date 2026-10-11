@@ -15,7 +15,7 @@ if(isset($_POST['reset'])){
 $sudadminid=intval($_GET['said']);
 $password=md5($_POST['inputpwd']);
 
-$query=mysqli_query($con,"update tbladmin set Password='$password' where UserType=0 and ID='$sudadminid'");
+$query=mysqli_query($db,"update Admin set Password='$password' where Privilege=0 and ID='$sudadminid'");
 if($query){
 echo "<script>alert('Sub-Admin password reset successfully.');</script>";
 echo "<script type='text/javascript'> document.location = 'manage-subadmins.php'; </script>";

@@ -16,7 +16,7 @@ $fname=$_POST['fullname'];
 $email=$_POST['emailid'];
 $mobileno=$_POST['mobilenumber'];
 $subadminid=intval($_GET['said']);
-$query=mysqli_query($con,"update tbladmin set AdminName='$fname',MobileNumber='$mobileno',Email='$email' where UserType=0 and ID='$subadminid'");
+$query=mysqli_query($db,"update Admin set Name='$fname',Phone='$mobileno',Email='$email' where Privilege=0 and ID='$subadminid'");
 if($query){
 echo "<script>alert('Sub admin details added successfully.');</script>";
 echo "<script type='text/javascript'> document.location = 'manage-subadmins.php'; </script>";
@@ -71,7 +71,7 @@ echo "<script>alert('Something went wron. Please try again.');</script>";
     </section>
 <?php 
 $said=intval($_GET['said']);
-$query=mysqli_query($con,"select * from tbladmin where UserType=0 and ID='$said'");
+$query=mysqli_query($db,"select * from Admin where Privilege=0 and ID='$said'");
 $cnt=1;
 while($result=mysqli_fetch_array($query)){
 ?>

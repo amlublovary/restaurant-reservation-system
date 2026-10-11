@@ -85,21 +85,21 @@ if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) {
                   </tr>
                   </thead>
                   <tbody>
-<?php $query=mysqli_query($con,"select * from tblbookings ");
+<?php $query=mysqli_query($db, "select * from Reservation");
 $cnt=1;
 while($result=mysqli_fetch_array($query)){
 ?>
 
                   <tr>
                     <td><?php echo $cnt;?></td>
-                    <td><?php echo $result['bookingNo']?></td>
-                    <td><?php echo $result['fullName']?></td>
-                    <td><?php echo $result['emailId']?></td>
-                   <td><?php echo $result['phoneNumber']?></td>
-                   <td><?php echo $result['noAdults']?></td>
-                    <td><?php echo $result['noChildrens']?></td>
-                    <td><?php echo $result['bookingDate']?>/<?php echo $result['bookingTime']?></td>
-                    <td><?php echo $result['postingDate']?></td>
+                    <td><?php echo $result['ID']?></td>
+                    <td><?php echo $result['Name']?></td>
+                    <td><?php echo $result['Email']?></td>
+                   <td><?php echo $result['Phone']?></td>
+                   <td><?php echo $result['Adults']?></td>
+                    <td><?php echo $result['Children']?></td>
+                    <td><?php echo $result['BookingDate']?>/<?php echo $result['BookingTime']?></td>
+                    <td><?php echo $result['Created']?></td>
                     <th>
      <a href="booking-details.php?bid=<?php echo $result['id'];?>" title="View Details" class="btn btn-primary btn-xm"> View Details</a> 
  </th>

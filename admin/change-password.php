@@ -15,10 +15,10 @@ if(isset($_POST['change'])){
 $admid=$_SESSION['aid'];
 $cpassword=md5($_POST['currentpassword']);
 $newpassword=md5($_POST['newpassword']);
-$query=mysqli_query($con,"select ID from tbladmin where ID='$admid' and   Password='$cpassword'");
+$query=mysqli_query($db, "select ID from Admin where ID='$admid' and Password='$cpassword'");
 $row=mysqli_fetch_array($query);
 if($row>0){
-$ret=mysqli_query($con,"update tbladmin set Password='$newpassword' where ID='$admid'");
+$ret=mysqli_query($db, "update Admin set Password='$newpassword' where ID='$admid'");
 echo '<script>alert("Your password successully changed.")</script>';
 } else {
 

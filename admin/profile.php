@@ -16,7 +16,7 @@ $fname=$_POST['fullname'];
 $email=$_POST['emailid'];
 $mobileno=$_POST['mobilenumber'];
 $adminid=intval($_SESSION['aid']);
-$query=mysqli_query($con,"update tbladmin set AdminName='$fname',MobileNumber='$mobileno',Email='$email' where  ID='$adminid'");
+$query=mysqli_query($db,"update Admin set Name='$fname',Phone='$mobileno',Email='$email' where ID='$adminid'");
 if($query){
 echo "<script>alert('Profile details updated successfully.');</script>";
 echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
@@ -71,7 +71,7 @@ echo "<script>alert('Something went wron. Please try again.');</script>";
     </section>
 <?php 
 $adminid=intval($_SESSION['aid']);
-$query=mysqli_query($con,"select * from tbladmin where  ID='$adminid'");
+$query=mysqli_query($db, "select * from Admin where ID='$adminid'");
 $cnt=1;
 while($result=mysqli_fetch_array($query)){
 ?>

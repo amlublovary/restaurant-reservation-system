@@ -7,12 +7,12 @@ if(isset($_POST['resetpwd']))
 $uname=$_POST['username'];
 $mobile=$_POST['mobileno'];
 $newpassword=md5($_POST['newpassword']);
-$sql =mysqli_query($con,"SELECT ID FROM tbladmin WHERE AdminuserName='$uname' and MobileNumber='$mobile'");
+$sql =mysqli_query($db, "SELECT ID FROM Admin WHERE Username='$uname' and Phone='$mobile'");
 $rowcount=mysqli_num_rows($sql);
 
 if($rowcount >0)
 {
-$query=mysqli_query($con,"update tbladmin set Password='$newpassword' where AdminuserName='$uname' and MobileNumber='$mobile'");
+$query=mysqli_query($db, "update Admin set Password='$newpassword' where Username='$uname' and Phone='$mobile'");
 if($query){
 echo "<script>alert('Your Password succesfully changed');</script>";
 echo "<script type='text/javascript'> document.location = 'index.php'; </script>";

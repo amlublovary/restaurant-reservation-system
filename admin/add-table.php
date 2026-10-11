@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
 //Getting Post Values  
 $tno=$_POST['tableno'];
 $addedby=$_SESSION['aid'];
-$query=mysqli_query($con,"insert into tblrestables(tableNumber,AddedBy) values('$tno','$addedby')");
+$query=mysqli_query($db, "insert into Table(Number,AdminID) values('$tno','$addedby')");
 if($query){
 echo "<script>alert('Table added successfully.');</script>";
 echo "<script type='text/javascript'> document.location = 'add-table.php'; </script>";

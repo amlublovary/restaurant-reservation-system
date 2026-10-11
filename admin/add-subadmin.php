@@ -18,7 +18,7 @@ $email=$_POST['emailid'];
 $mobileno=$_POST['mobilenumber'];
 $password=md5($_POST['inputpwd']);
 $usertype='0';
-$query=mysqli_query($con,"insert into tbladmin(AdminuserName,AdminName,MobileNumber,Email,Password,UserType ) values('$username','$fname','$mobileno','$email','$password','$usertype')");
+$query=mysqli_query($db, "insert into Admin(Username,Name,Phone,Email,Password,Privilege ) values('$username','$fname','$mobileno','$email','$password','$usertype')");
 if($query){
 echo "<script>alert('Sub admin details added successfully.');</script>";
 echo "<script type='text/javascript'> document.location = 'add-subadmin.php'; </script>";

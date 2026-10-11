@@ -85,7 +85,7 @@ if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) {
                   </tr>
                   </thead>
                   <tbody>
-<?php $query=mysqli_query($con,"select * from tblbookings where (boookingStatus='Accepted')");
+<?php $query=mysqli_query($db, "select * from Reservation where (Status='Accepted')");
 $cnt=1;
 while($result=mysqli_fetch_array($query)){
 ?>

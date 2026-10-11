@@ -20,12 +20,12 @@ $bdate=$_POST['bdate'];
  $btime=strtotime($_POST['btime']);
 $endTime = date("H:i:s", strtotime('+30 minutes', $btime));
 
-$ret=mysqli_query($con,"SELECT * FROM tblbookings where ('$btime' BETWEEN time(bookingTime) and '$endTime' || '$endTime' BETWEEN time(bookingTime) and '$endTime' || bookingTime BETWEEN '$btime' and '$endTime') and tableId='$tbaleid' and bookingDate='$bdate' and boookingStatus='Accepted'");
+$ret=mysqli_query($db, "SELECT * FROM Reservation where ('$btime' BETWEEN time(BookingTime) and '$endTime' || '$endTime' BETWEEN time(BookingTime) and '$endTime' || BookingTime BETWEEN '$btime' and '$endTime') and tableId='$tbaleid' and BookingDate='$bdate' and Status='Accepted'");
  $count=mysqli_num_rows($ret);
 if($count>0){
 echo "<script>alert('Table already booked for given Date and Time. please choose another table');</script>";
 } else{
-$query=mysqli_query($con,"update tblbookings set adminremark='$oremark',boookingStatus='$estatus',tableId='$tbaleid' where id='$bid'");
+$query=mysqli_query($db, "update Reservation set Comment='$oremark',Status='$estatus',TableID='$tbaleid' where ID='$bid'");
 
 if($query){
 echo "<script>alert('Booking Details Updated   successfully.');</script>";
@@ -101,7 +101,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
        
                   <tbody>
 <?php $bid=intval($_GET['bid']);
-$query=mysqli_query($con,"select * from tblbookings where id='$bid'");
+$query=mysqli_query($db, "select * from Reservation where ID='$bid'");
 $cnt=1;
 while($result=mysqli_fetch_array($query)){
 ?>
@@ -206,7 +206,7 @@ while($result=mysqli_fetch_array($query)){
             <input type="hidden" name="btime" value="<?php echo $btime;?>">
             <select class="form-control" name="table" id="table">
             <option value="">Select Table</option>
-            <?php $ret=mysqli_query($con,"select id,tableNumber from tblrestables");
+            <?php $ret=mysqli_query($db, "select ID,Number from Table");
 while($row=mysqli_fetch_array($ret)){
 ?>
             <option value="<?php echo $row['id'];?>"><?php echo $row['tableNumber'];?></option>
