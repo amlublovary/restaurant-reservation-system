@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
 	$bno = mt_rand(100000000,9999999999);
 
 	//Code for Insertion
-	$query = mysqli_query($db, "insert into tblbookings(bookingNo,fullName,emailId,phoneNumber,bookingDate,bookingTime,noAdults,noChildrens) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
+	$query = mysqli_query($db, "insert into Reservation(ID,Name,Email,Phone,BookingDate,BookingTime,Adults,Children) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
 	if ($query) {
 		echo '<script type="text/javascript">alert("Your order has been sent successfully. Your booking number is "+"'.$bno.'");</script>';
 		echo '<script type="text/javascript">document.location = "index.php";</script>';
