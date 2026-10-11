@@ -13,7 +13,7 @@ if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) {
 //Code For Deletion the subadmin
 if($_GET['action']=='delete'){
 $subadminid=intval($_GET['said']);
-$query=mysqli_query($con,"delete from tbladmin where ID='$subadminid'");
+$query=mysqli_query($db, "delete from Admin where ID='$subadminid'");
 if($query){
 echo "<script>alert('Sub admin record deleted successfully.');</script>";
 echo "<script type='text/javascript'> document.location = 'manage-subadmins.php'; </script>";
@@ -95,18 +95,18 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
                   </tr>
                   </thead>
                   <tbody>
-<?php $query=mysqli_query($con,"select * from tbladmin where UserType=0");
+<?php $query=mysqli_query($db, "select * from Admin where Privilege=0");
 $cnt=1;
 while($result=mysqli_fetch_array($query)){
 ?>
 
                   <tr>
                     <td><?php echo $cnt;?></td>
-                    <td><?php echo $result['AdminuserName']?></td>
-                    <td><?php echo $result['AdminName']?></td>
+                    <td><?php echo $result['Username']?></td>
+                    <td><?php echo $result['Name']?></td>
                    <td><?php echo $result['Email']?></td>
-                    <td><?php echo $result['MobileNumber']?></td>
-                    <td><?php echo $result['AdminRegdate']?></td>
+                    <td><?php echo $result['Phone']?></td>
+                    <td><?php echo $result['Created']?></td>
                     <th>
      <a href="edit-subadmin.php?said=<?php echo $result['ID'];?>" title="Edit Sub Admin Details"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
      <a href="manage-subadmins.php?action=delete&&said=<?php echo $result['ID']; ?>" style="color:red;" title="Delete this record" onclick="return confirm('Do you really want to delete this record?');"><i class="fa fa-trash" aria-hidden="true"></i> </a>

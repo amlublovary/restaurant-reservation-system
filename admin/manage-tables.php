@@ -14,7 +14,7 @@ if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) {
 if($_GET['action']=='delete'){
 $tid=intval($_GET['tid']);
 
-$query=mysqli_query($con,"delete from tblrestables where id='$tid'");
+$query=mysqli_query($db, "delete from Table where ID='$tid'");
 if($query){
 echo "<script>alert('Table details deleted successfully.');</script>";
 echo "<script type='text/javascript'> document.location = 'manage-tables.php'; </script>";
@@ -96,8 +96,8 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
                   </tr>
                   </thead>
                   <tbody>
-<?php $query=mysqli_query($con,"select AdminName,tblrestables.id as tid,tblrestables.tableNumber,tblrestables.creationDate from tblrestables
-left join tbladmin on tbladmin.ID=tblrestables.AddedBy");
+<?php $query=mysqli_query($db, "select Name,Table.ID as tid,Table.Number,Table.Created from Table
+left join Admin on Admin.ID=Table.AdminID");
 $cnt=1;
 while($result=mysqli_fetch_array($query)){
 ?>
