@@ -5,12 +5,12 @@
  *
  * Home page
  *
- * @package    table-reservations
+ * @package    restaurant-reservation-system
  * @author     Ana-Maria Lublovary <anamaria.lublovary@gmail.com>
  * @copyright  2026 datikothechef.com
  * @license    https://opensource.org/license/GPL-3.0 GNU General Public License v3.0
  * @version    1.0
- * @link       http://github.com/
+ * @link       https://github.com/amlublovary/restaurant-reservation-system
  */
 
 // Set a constant 'HP' that helps to identify that the home page was loaded

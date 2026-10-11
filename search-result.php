@@ -1,16 +1,15 @@
-<?php session_start();
-error_reporting(0);
-// Database Connection
-include('admin/includes/config.php');
+<?php
+session_start();
 
+include_once('./inc/config.php');
 
-  ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Restaurent Table Booking System | search result</title>
+  <title>Table Reservation | Search</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -66,7 +65,7 @@ include('admin/includes/config.php');
                     <th>Email Id</th>
                     <th>Mobile No</th>
                     <th>No. Adults</th>
-                    <th>No of Childrens</th>
+                    <th>No of Children</th>
                     <th>Boking Date/Time</th>
                      <th>Posting Date</th>
                     <th>Action</th>
@@ -76,21 +75,21 @@ include('admin/includes/config.php');
 <?php 
 $sdata=$_POST['searchdata'];
 
-$query=mysqli_query($con,"select * from tblbookings where bookingNo like '%$sdata%' || phoneNumber like '%$sdata%'");
+$query=mysqli_query($db, "select * from Reservation where ID like '%$sdata%' || Phone like '%$sdata%'");
 $cnt=1;
 while($result=mysqli_fetch_array($query)){
 ?>
 
                   <tr>
                     <td><?php echo $cnt;?></td>
-                    <td><?php echo $result['bookingNo']?></td>
-                    <td><?php echo $result['fullName']?></td>
-                    <td><?php echo $result['emailId']?></td>
-                   <td><?php echo $result['phoneNumber']?></td>
-                   <td><?php echo $result['noAdults']?></td>
-                    <td><?php echo $result['noChildrens']?></td>
-                    <td><?php echo $result['bookingDate']?>/<?php echo $result['bookingTime']?></td>
-                    <td><?php echo $result['postingDate']?></td>
+                    <td><?php echo $result['ID']?></td>
+                    <td><?php echo $result['Name']?></td>
+                    <td><?php echo $result['Email']?></td>
+                   <td><?php echo $result['Phone']?></td>
+                   <td><?php echo $result['Adults']?></td>
+                    <td><?php echo $result['Children']?></td>
+                    <td><?php echo $result['BookingDate']?>/<?php echo $result['BookingTime']?></td>
+                    <td><?php echo $result['Created']?></td>
                     <th>
      <a href="booking-details.php?bid=<?php echo $result['id'];?>" title="View Details" class="btn btn-primary btn-xm" target="blank"> View Details</a> 
  </th>
@@ -106,7 +105,7 @@ while($result=mysqli_fetch_array($query)){
                     <th>Email Id</th>
                     <th>Mobile No</th>
                     <th>No. Adults</th>
-                    <th>No of Childrens</th>
+                    <th>No of Children</th>
                     <th>Boking Date/Time</th>
                      <th>Posting Date</th>
                     <th>Action</th>

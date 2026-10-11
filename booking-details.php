@@ -1,16 +1,15 @@
-<?php session_start();
-//error_reporting(0);
-// Database Connection
-include('admin/includes/config.php');
+<?php
+session_start();
 
+include_once('./inc/config.php');
 
-  ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Restaurent Table Booking System  | Booking Details</title>
+  <title>Table Reservation | Booking Details</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -60,7 +59,7 @@ include('admin/includes/config.php');
        
                   <tbody>
 <?php $bid=intval($_GET['bid']);
-$query=mysqli_query($con,"select * from tblbookings where id='$bid'");
+$query=mysqli_query($db, "select * from Reservation where ID='$bid'");
 $cnt=1;
 while($result=mysqli_fetch_array($query)){
 ?>
@@ -68,30 +67,30 @@ while($result=mysqli_fetch_array($query)){
 
        <tr>
                   <th>Booking Number</th>
-                    <td colspan="3"><?php echo $result['bookingNo']?></td>
+                    <td colspan="3"><?php echo $result['ID']?></td>
                   </tr>
 
                   <tr>
                   <th> Name</th>
-                    <td><?php echo $result['fullName']?></td>
+                    <td><?php echo $result['Name']?></td>
                     <th>Email Id</th>
-                   <td> <?php echo $result['emailId']?></td>
+                   <td> <?php echo $result['Email']?></td>
                   </tr>
                   <tr>
                     <th> Mobile No</th>
-                    <td><?php echo $result['phoneNumber']?></td>
+                    <td><?php echo $result['Phone']?></td>
                     <th>No of Adults</th>
-                    <td><?php echo $result['noAdults']?></td>
+                    <td><?php echo $result['Adults']?></td>
                   </tr>
                   <tr>
                     <th>No of Childs</th>
-                   <td><?php echo $result['noChildrens']?></td>
+                   <td><?php echo $result['Children']?></td>
                    <th>Booking Date / Time</th>
-                   <td><?php echo $date=$result['bookingDate']?>/<?php echo $btime=$result['bookingTime']?></td>
+                   <td><?php echo $date=$result['BookingDate']?>/<?php echo $btime=$result['BookingTime']?></td>
                  </tr>
                  <tr>
                   <th>Posting Date</th>
-                    <td colspan="3"><?php echo $result['postingDate']?></td>
+                    <td colspan="3"><?php echo $result['Created']?></td>
                   </tr>
 
  

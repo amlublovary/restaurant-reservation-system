@@ -1,4 +1,5 @@
-<?php include_once('admin/includes/config.php');
+<?php
+include_once('./inc/config.php');
 
 if(isset($_POST['submit'])){
 
@@ -11,7 +12,7 @@ $noadults=$_POST['noadults'];
 $nochildrens=$_POST['nochildrens'];
 $bno=mt_rand(100000000,9999999999);
 //Code for Insertion
-$query=mysqli_query($con,"insert into tblbookings(bookingNo,fullName,emailId,phoneNumber,bookingDate,bookingTime,noAdults,noChildrens) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
+$query=mysqli_query($db, "insert into Reservation(ID,Name,Email,Phone,BookingDate,BookingTime,Adults,Children) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
 if($query){
 echo '<script>alert("Your order sent successfully. Booking number is "+"'.$bno.'")</script>';
 echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
@@ -26,7 +27,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 <html lang="en">
 
 <head>
-	<title>Restaurent Table Booking System</title>
+	<title>Table Reservation | Status</title>
 	<!-- Meta tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
