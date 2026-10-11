@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="dashboard.php" class="brand-link">
 
-      <span class="brand-text font-weight-light">RTBS | Admin </span>
+      <span class="brand-text font-weight-light">RRS | Admin</span>
     </a>
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->

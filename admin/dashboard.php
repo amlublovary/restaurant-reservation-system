@@ -12,7 +12,7 @@ else{ ?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Restaurent Table Booking System | Dashboard</title>
+  <title>Restaurant Reservation System | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -79,7 +79,7 @@ else{ ?>
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-<?php $query=mysqli_query($con,"select id from tbladmin where UserType=0");
+<?php $query=mysqli_query($db, "select ID from Admin where Privilege=0");
 $subadmincount=mysqli_num_rows($query);
 ?>
 
@@ -99,7 +99,7 @@ $subadmincount=mysqli_num_rows($query);
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-<?php $query1=mysqli_query($con,"select * from tblbookings");
+<?php $query1=mysqli_query($db, "select * from Reservation");
 $allbookings=mysqli_num_rows($query1);
 ?>
 
@@ -118,7 +118,7 @@ $allbookings=mysqli_num_rows($query1);
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
- <?php $query3=mysqli_query($con,"select * from tblbookings where (boookingStatus is null || boookingStatus='')");
+ <?php $query3=mysqli_query($db,"select * from Reservation where (Status is null || Status='')");
 $newbookings=mysqli_num_rows($query3);
 ?>               
                 <h3><?php echo $newbookings;?></h3>
@@ -141,7 +141,7 @@ $newbookings=mysqli_num_rows($query3);
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-<?php $query11=mysqli_query($con,"select * from tblbookings where (boookingStatus='Accepted')");
+<?php $query11=mysqli_query($db,"select * from Reservation where (Status='Accepted')");
 $acceptedbookings=mysqli_num_rows($query11);
 ?>
 
@@ -161,7 +161,7 @@ $acceptedbookings=mysqli_num_rows($query11);
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-<?php $query12=mysqli_query($con,"select * from tblbookings where (boookingStatus='Rejected')");
+<?php $query12=mysqli_query($db,"select * from Reservation where (Status='Rejected')");
 $rejectedbookings=mysqli_num_rows($query12);
 ?>
 

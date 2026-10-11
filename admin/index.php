@@ -6,12 +6,12 @@ if(isset($_POST['login']))
   {
     $uname=$_POST['username'];
     $Password=md5($_POST['inputpwd']);
-    $query=mysqli_query($con,"select ID,AdminuserName,UserType from tbladmin where  AdminuserName='$uname' && Password='$Password' ");
+    $query=mysqli_query($db, "select ID,Username,Privilege from Admin where Username='$uname' && Password='$Password'");
     $ret=mysqli_fetch_array($query);
     if($ret>0){
       $_SESSION['aid']=$ret['ID'];
-      $_SESSION['uname']=$ret['AdminuserName'];
-      $_SESSION['utype']=$ret['UserType'];
+      $_SESSION['uname']=$ret['Username'];
+      $_SESSION['utype']=$ret['Privilege'];
      header('location:dashboard.php');
     }
     else{
@@ -24,7 +24,7 @@ if(isset($_POST['login']))
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Restaurent Table Reservation System | Login</title>
+  <title>Restaurant Reservation System | Login</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -40,7 +40,7 @@ if(isset($_POST['login']))
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../index.php" class="h1"><b>Admin</b> |  RTRS</a>
+      <a href="../index.php" class="h1"><b>Admin</b> | RRS</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
