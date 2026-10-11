@@ -1,4 +1,8 @@
 # restaurant-table-reservation
+`Note: This is my IB project with work in progress.`
+
+[cover]: https://github.com/amlublovary/restaurant-table-reservation/raw/main/images/cover.jpg "Cover"
+
 “Restaurant Reservation System" is a web application that enables visitors to reserve online a table at any restaurant, bar or café, and notify the manager to prepare the tables and meals in advance.
 
 **Demo Homepage for visitors:**
