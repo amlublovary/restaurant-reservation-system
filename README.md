@@ -7,6 +7,7 @@
 **Demo Admin dashboard for staff:**
 [datikothechef.com/admin](https://datikothechef.com/admin/)
 > Username: admin
+> 
 > Password: datikoadmin
 
 This application aims to enhance customer service by offering a comprehensive view of available tables in the restaurant before arriving to the venue, allowing guests to choose their preferred seating in advance, explore the restaurant's menu, and add their reservation to their calendar.
