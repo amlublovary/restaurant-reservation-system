@@ -1,10 +1,11 @@
-<?php session_start();
-// Database Connection
-include('../inc/config.php');
+<?php
+session_start();
+
+include_once('../inc/config.php');
+
 //Validating Session
-if(strlen($_SESSION['aid'])==0)
-  { 
-header('location:index.php');
+if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) { 
+  header('location:index.php');
 }
 else{ ?>
 <!DOCTYPE html>
