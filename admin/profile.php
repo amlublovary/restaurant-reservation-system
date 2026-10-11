@@ -12,19 +12,19 @@ if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) {
 
 // Code for Update  Sub Admin Details
 if(isset($_POST['update'])){
-$fname=$_POST['fullname'];
-$email=$_POST['emailid'];
-$mobileno=$_POST['mobilenumber'];
-$adminid=intval($_SESSION['aid']);
-$query=mysqli_query($db,"update Admin set Name='$fname',Phone='$mobileno',Email='$email' where ID='$adminid'");
-if($query){
-echo "<script>alert('Profile details updated successfully.');</script>";
-echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
-} else {
-echo "<script>alert('Something went wron. Please try again.');</script>";
+  $fname=$_POST['fullname'];
+  $email=$_POST['emailid'];
+  $mobileno=$_POST['mobilenumber'];
+  $adminid=intval($_SESSION['aid']);
+  $query=mysqli_query($db,"update Admin set Name='$fname',Phone='$mobileno',Email='$email' where ID='$adminid'");
+  if($query){
+    echo "<script>alert('Profile details updated successfully.');</script>";
+    echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
+  } else {
+    echo "<script>alert('Something went wrong. Please try again.');</script>";
+  }
 }
-}
-  ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,12 +93,12 @@ while($result=mysqli_fetch_array($query)){
 <!-- Username-->
     <div class="form-group">
                     <label for="exampleInputusername">Username (used for login)</label>
-               <input type="text"   name="sadminusername" id="sadminusername" class="form-control" value="<?php echo $result['AdminuserName'];?>" readonly>
+               <input type="text"   name="sadminusername" id="sadminusername" class="form-control" value="<?php echo $result['Username'];?>" readonly>
                   </div>
 <!-- admin Full Name--->
    <div class="form-group">
                     <label for="exampleInputFullname">Full Name</label>
-                    <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $result['AdminName'];?>" placeholder="Enter Sub-Admin Full Name" required>
+                    <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $result['Name'];?>" placeholder="Enter Sub-Admin Full Name" required>
                   </div>
 <!--  admin Email---->
                   <div class="form-group">
@@ -108,13 +108,13 @@ while($result=mysqli_fetch_array($query)){
 <!--  admin Contact Number---->
                   <div class="form-group">
                     <label for="text">Mobile Number</label>
-                    <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" placeholder="Enter email" pattern="[0-9]{10}" title="10 numeric characters only" maxlength="10" required value="<?php echo $result['MobileNumber'];?>">
+                    <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" placeholder="Enter email" pattern="[0-9]{10}" title="10 numeric characters only" maxlength="10" required value="<?php echo $result['Phone'];?>">
                   </div>
 
 <!--  admin Profile Reg. Date---->
                   <div class="form-group">
                     <label for="text">Registration Date</label>
-                    <input type="text" class="form-control" id="regdate" name="regdate"  required value="<?php echo $result['AdminRegdate'];?>" readonly>
+                    <input type="text" class="form-control" id="regdate" name="regdate"  required value="<?php echo $result['Created'];?>" readonly>
                   </div>
 
 
