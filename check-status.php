@@ -51,8 +51,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 </head>
 
 <body>
-	<h1 class="header-w3ls">
-		RTBS | Check Status</h1>
+	<h1 class="header-w3ls">Table Reservation | Check Status</h1>
 	<div class="appointment-w3">
 		<form action="search-result.php" method="post">
 			<div class="personal">
