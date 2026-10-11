@@ -11,21 +11,17 @@ if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) {
 } else {
 
 //Code For Deletion the classes
-if($_GET['action']=='delete'){
-$tid=intval($_GET['tid']);
-
-$query=mysqli_query($db, "delete from Table where ID='$tid'");
-if($query){
-echo "<script>alert('Table details deleted successfully.');</script>";
-echo "<script type='text/javascript'> document.location = 'manage-tables.php'; </script>";
-} else {
-echo "<script>alert('Something went wrong. Please try again.');</script>";
+if(isset($_GET['action']) && $_GET['action']=='delete') {
+  $tid=intval($_GET['tid']);
+  $query=mysqli_query($db, "delete from Table where ID='$tid'");
+  if($query){
+  echo "<script>alert('Table details deleted successfully.');</script>";
+  echo "<script type='text/javascript'> document.location = 'manage-tables.php'; </script>";
+  } else {
+  echo "<script>alert('Something went wrong. Please try again.');</script>";
+  }
 }
-
-}
-
-
-  ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
