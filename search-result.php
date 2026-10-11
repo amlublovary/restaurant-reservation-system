@@ -126,7 +126,7 @@ while($result=mysqli_fetch_array($query)){
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-<?php include_once('includes/footer.php');?>
+<?php include_once('./inc/footer.php');?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
