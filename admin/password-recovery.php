@@ -1,5 +1,6 @@
-<?php //error_reporting(0);
-include('includes/config.php');
+<?php
+// Include the configuration file for database connection and other settings
+include_once('../inc/config.php');
 
 if(isset($_POST['resetpwd']))
   {
@@ -26,7 +27,7 @@ echo "<script>alert('Email id or Mobile no is invalid');</script>";
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Restaurent Table Booking System| Password Recovery</title>
+  <title>Restaurant Reservation System | Password Recovery</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">

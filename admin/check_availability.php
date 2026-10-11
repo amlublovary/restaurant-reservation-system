@@ -1,5 +1,10 @@
-<?php 
-require_once("includes/config.php");
+<?php
+// Start the session to manage user authentication and session variables
+session_start();
+
+// Include the configuration file for database connection and other settings
+include_once('../inc/config.php');
+
 // code   username availablity
 if(!empty($_POST["username"])) {
 	$uname= $_POST["username"];

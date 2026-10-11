@@ -1,12 +1,15 @@
-<?php session_start();
-// Database Connection
-include('includes/config.php');
-//Validating Session
-if(strlen($_SESSION['aid'])==0)
-  { 
-header('location:index.php');
-}
-else{
+<?php
+// Start the session to manage user authentication and session variables
+session_start();
+
+// Include the configuration file for database connection and other settings
+include_once('../inc/config.php');
+
+// Check if user is authenticated and has got a valid session
+if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) { 
+  header('location:index.php');
+} else {
+
 // Code for Add New Teacher
 if(isset($_POST['submit'])){
 //Getting Post Values  
@@ -28,7 +31,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Restaurent Table Booking System  | Add Table</title>
+  <title>Restaurant Reservation System | Add Table</title>
 
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
 

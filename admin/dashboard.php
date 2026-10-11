@@ -1,13 +1,15 @@
 <?php
+// Start the session to manage user authentication and session variables
 session_start();
 
+// Include the configuration file for database connection and other settings
 include_once('../inc/config.php');
 
-//Validating Session
+// Check if user is authenticated and has got a valid session
 if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) { 
   header('location:index.php');
-}
-else{ ?>
+} else {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

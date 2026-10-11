@@ -16,7 +16,7 @@
 // Set a constant 'HP' that helps to identify that the home page was loaded
 define('HP', 'true');
 
-// Load the settings
+// Include the configuration file for database connection and other settings
 include_once('./inc/config.php');
 
 if (isset($_POST['submit'])) {

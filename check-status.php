@@ -1,4 +1,5 @@
 <?php
+// Include the configuration file for database connection and other settings
 include_once('./inc/config.php');
 
 if(isset($_POST['submit'])){

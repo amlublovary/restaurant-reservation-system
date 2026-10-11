@@ -1,6 +1,9 @@
 <?php
+// Start the session to manage user authentication and session variables
 session_start();
-include('../inc/config.php');
+
+// Include the configuration file for database connection and other settings
+include_once('../inc/config.php');
 
 if(isset($_POST['login']))
   {
