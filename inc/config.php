@@ -5,7 +5,7 @@
 
 // Connect to database
 try {
-	$db = mysqli_connect('db', 'datikothechef', 'AuJ7k68cXCTnpPSX', 'datikothechef');
+	$db = mysqli_connect('db', 'datikothechef', 'ab3y9UBJZS8g6yw12', 'datikothechef');
 } catch (mysqli_sql_exception $error) {
 	die($error);
 }
