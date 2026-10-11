@@ -1,5 +1,5 @@
 # restaurant-table-reservation
-“Restaurant Table Reservation" is a web application that enables visitors to reserve online a table at any restaurant, bar or café, and notify the manager to prepare the tables and meals in advance.
+“Restaurant Reservation System" is a web application that enables visitors to reserve online a table at any restaurant, bar or café, and notify the manager to prepare the tables and meals in advance.
 
 **Demo Homepage for visitors:**
 [datikothechef.com](https://datikothechef.com)
