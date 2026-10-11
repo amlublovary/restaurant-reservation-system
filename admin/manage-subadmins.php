@@ -11,18 +11,17 @@ if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) {
 } else {
 
 //Code For Deletion the subadmin
-if($_GET['action']=='delete'){
-$subadminid=intval($_GET['said']);
-$query=mysqli_query($db, "delete from Admin where ID='$subadminid'");
-if($query){
-echo "<script>alert('Sub admin record deleted successfully.');</script>";
-echo "<script type='text/javascript'> document.location = 'manage-subadmins.php'; </script>";
-} else {
-echo "<script>alert('Something went wrong. Please try again.');</script>";
+if(isset($_GET['action']) && $_GET['action']=='delete') {
+  $subadminid=intval($_GET['said']);
+  $query=mysqli_query($db, "delete from Admin where ID='$subadminid'");
+  if($query){
+    echo "<script>alert('Sub admin record deleted successfully.');</script>";
+    echo "<script type='text/javascript'> document.location = 'manage-subadmins.php'; </script>";
+  } else {
+    echo "<script>alert('Something went wrong. Please try again.');</script>";
+  }
 }
-
-}
-  ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
