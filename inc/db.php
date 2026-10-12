@@ -1,5 +1,4 @@
 <?php
-
 /**
  * db.php
  *
@@ -146,10 +145,15 @@ class DBO {
 		return $result;
 	}
 
-    // This function will return all the result from our MySQL query as an array.
-	public function fetch() {
+    // This function will return all the result from our MySQL query as a single value or as an array if there are multiple results.
+	public function fetch($query = null) {
 	    $params = array();
         $row = array();
+
+        // If we passed an SQL query directly as a parameter then run this query now.
+        if( !empty($query) ) {
+            $this->query($query);
+        }
 
         // Get the metadata for our MySQL query and loop through each field to bind the result to an array.
 	    $meta = $this->query->result_metadata();
@@ -176,8 +180,17 @@ class DBO {
         $this->query->close();
         $this->query_done = true;
 
-        // Return the results array, so we can use that value later in our main code.
-		return $result;
+        // Return the results, so we can use that value later in our main code.
+        if( sizeof($result) == 0 ) {
+            // The query has no results to return a false boolean.
+            return null;
+        } elseif( sizeof($result) == 1 ) {
+            // The query result contains just 1 row, so return only its value.
+            return $result[array_key_first($result)];
+        } else {
+            // The query result contains multiple rows, so return them all as an array.
+		    return $result;
+        }
 	}
 
     // This function will escape any special characters in our query to prevent SQL injection attacks and other issues.

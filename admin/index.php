@@ -1,5 +1,4 @@
 <?php
-
 /**
  * index.php
  *
@@ -27,10 +26,11 @@ if( isset($_POST['login']) && isset($_POST['username']) && isset($_POST['inputpw
   $Password = $dbo->escape( md5($_POST['inputpwd']) );
 
   // Check in the database if the login credentials are valid and show a message if they aren't.
-  $dbo->query("SELECT ID, Username, Privilege FROM Admin WHERE Username='$Username' && Password='$Password'");
+  $dbo->query("SELECT ID, Name, Username, Privilege FROM Admin WHERE Username='$Username' && Password='$Password'");
   $result = $dbo->fetch();
   if( $result ) {
     $_SESSION['aid'] = $result['ID'];
+    $_SESSION['name'] = $result['Name'];
     $_SESSION['uname'] = $result['Username'];
     $_SESSION['utype'] = $result['Privilege'];
     header('location:dashboard.php');
@@ -54,7 +54,7 @@ if( isset($_POST['login']) && isset($_POST['username']) && isset($_POST['inputpw
 <div class="login-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../index.php" class="h1"><b>Admin</b> | RRS</a>
+      <a href="/admin/" class="h1"><b>Admin</b> | RRS</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Please sign in below</p>

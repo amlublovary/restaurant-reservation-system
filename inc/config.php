@@ -1,5 +1,4 @@
 <?php
-
 /**
  * config.php
  *
@@ -15,6 +14,8 @@
  * @link       https://github.com/amlublovary/restaurant-reservation-system
  */
 
+define('VERSION', '1.0');					// Current version of our application
+define('COPYRIGHT', '&copy; 2026 <a href="https://github.com/amlublovary/restaurant-reservation-system" target="_blank">github.com/amlublovary/restaurant-reservation-system</a>');	// Copyright footer of our application
 define('SHOW_ERROR', true);					// If set to true then display errors on the screen (recommended only during development)
 define('LOG_ERROR', false);					// If set to true then log errors to a file
 define('DB_SERVER', 'db');					// Name of our database server (usually localhost)
