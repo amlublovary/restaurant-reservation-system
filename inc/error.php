@@ -21,8 +21,8 @@
 class Errors {
 
     // Global variables are available within this class and everywhere else in our code.
-    static $show_error;
-    static $log_error;
+    static $show_error;         // Variable that tells if we should show errors on screen or not.
+    static $log_error;          // Variable that tells if we should log errors to a file or not.
 
     // This is the constructor which will run automatically every time we use this class.
 	public function __construct($show = false, $log = true) {

@@ -1,14 +1,29 @@
 <?php
+
+/**
+ * dashboard.php
+ *
+ * Admin dashboard
+ *
+ * @package    restaurant-reservation-system
+ * @author     Ana-Maria Lublovary <anamaria.lublovary@gmail.com>
+ * @copyright  2026 datikothechef.com
+ * @license    https://opensource.org/license/GPL-3.0 GNU General Public License v3.0
+ * @version    1.0
+ * @link       https://github.com/amlublovary/restaurant-reservation-system
+ */
+
+// Include necessary files such as configuration, error handling, database connection, etc.
+require_once('../inc/autoload.php');
+
 // Start the session to manage user authentication and session variables
 session_start();
 
-// Include the configuration file for database connection and other settings
-include_once('../inc/config.php');
-
-// Check if user is authenticated and has got a valid session
-if(!isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0) { 
+// Check if user is authenticated and has got a user ID in the current session, or redirect back to the login page.
+if( !isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0 ) { 
   header('location:index.php');
-} else {
+  die();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -250,4 +265,3 @@ $rejectedbookings=mysqli_num_rows($query12);
 <script src="../dist/js/pages/dashboard.js"></script>
 </body>
 </html>
-<?php } ?>

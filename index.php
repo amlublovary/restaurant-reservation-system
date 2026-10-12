@@ -13,11 +13,11 @@
  * @link       https://github.com/amlublovary/restaurant-reservation-system
  */
 
-// Set a constant 'HP' that helps to identify that the home page was loaded
-define('HP', 'true');
-
 // Include necessary files such as configuration, error handling, database connection, etc.
 require_once('./inc/autoload.php');
+
+// Set a constant 'HP' that helps to identify that the home page was loaded
+define('HP', 'true');
 
 if (isset($_POST['submit'])) {
 	$fname = $_POST['name'];
