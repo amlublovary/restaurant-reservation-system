@@ -33,7 +33,7 @@ if( isset($_POST['submit']) && isset($_POST['search_no']) && !empty($_POST['sear
 }
 
 // If we didn't query the database successfully then redirect visitor back to the previous page.
-if( !isset($result) ) {
+if( !isset($result) || empty($result) ) {
 	echo '<script type="text/javascript">document.location = "reservation.php";</script>';
 	die();
 }
@@ -56,7 +56,7 @@ if( !isset($result) ) {
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 </head>
 <body>
-  <section class="content-header" style="background-color:white!important;">
+  <section class="content-header" style="background-color:white;">
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6">
@@ -111,6 +111,13 @@ foreach($result as $row) {
 	  </div>
 	</div>
   </section>
+	<div class="appointment-w3">
+		<form action="reservation.php" method="post">
+			<div class="btnn">
+				<input type="submit" value="Back" name="back">
+			</div>
+		</form>
+	</div>
 <script src="plugins/jquery/jquery.min.js" type="text/javascript"></script>
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 <script src="plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
