@@ -128,7 +128,9 @@ if (isset($_POST['submit'])) {
 <script type="text/javascript" src="./js/jquery-ui.js"></script>
 <script type="text/javascript" src="./js/wickedpicker.js"></script>
 <script type="text/javascript">
-	$('.timepicker,.timepicker1').wickedpicker({ twentyFour: false });
+	$('.timepicker,.timepicker1').wickedpicker({
+		twentyFour: true;
+	});
 	$(function() {
 		$("#datepicker").datepicker({
 			dateFormat: "yy-mm-dd",
