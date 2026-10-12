@@ -16,23 +16,32 @@
 require_once('./inc/autoload.php');
 
 // Set a constant 'HP' that helps to identify that the home page was loaded
-define('HP', 'true');
+define('HP', true);
 
-if (isset($_POST['submit'])) {
-	$fname = $_POST['name'];
-	$emailid = $_POST['email'];
-	$phonenumber = $_POST['phonenumber'];
-	$bookingdate = $_POST['bookingdate'];
-	$bookingtime = $_POST['bookingtime'];
-	$noadults = $_POST['noadults'];
-	$nochildrens = $_POST['nochildrens'];
-	$bno = mt_rand(100000000,9999999999);
+// Check if the visitor tried to book a table and sent data are not empty.
+if( isset($_POST['submit']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['bookingdate']) && isset($_POST['bookingtime']) && isset($_POST['adults']) && isset($_POST['children']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone']) && !empty($_POST['bookingdate']) && !empty($_POST['bookingtime']) && !empty($_POST['adults']) && !empty($_POST['children']) ) {
 
-	//Code for Insertion
-	$query = mysqli_query($db, "insert into Reservation(Number,Name,Email,Phone,BookingDate,BookingTime,Adults,Children) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
-	if ($query) {
-		echo '<script type="text/javascript">alert("Your order has been sent successfully. Your booking number is "+"'.$bno.'");</script>';
-		echo '<script type="text/javascript">document.location = "index.php";</script>';
+	// Generate a random booking number.
+	$booking_no = mt_rand(100000000, 9999999999);
+
+	// Save the visitor's data into variables and escape each data to prevent SQL injections and other possible issues.
+	$name = $dbo->escape($_POST['name']);
+	$email = $dbo->escape( str_replace(' ', '', $_POST['email']) );
+	
+	$phone = str_replace(' ', '', $_POST['phone']);	// Remove any spaces from phone number
+	$phone = str_replace('+', '00', $phone);		// Replace + symbol with 00
+	$phone = preg_replace("/[^0-9 ]/", '', $phone);	// Remove everything but numbers
+	$phone = $dbo->escape($phone);
+
+	$bookingdate = $dbo->escape( str_replace(' ', '', $_POST['bookingdate']) );
+	$bookingtime = $dbo->escape( str_replace(' ', '', $_POST['bookingtime']) );
+	$adults = intval( str_replace(' ', '', $_POST['adults']) );
+	$children = intval( str_replace(' ', '', $_POST['children']) );
+
+	// Save the visitor's booking details into the database.
+	if( $dbo->query("INSERT INTO Reservation (Number, Name, Email, Phone, BookingDate, BookingTime, Adults, Children) VALUES ('$booking_no', '$name', '$email', '$phone', '$bookingdate', '$bookingtime', '$adults', '$children')") ) {
+		echo '<script type="text/javascript">alert("Your order has been taken, confirmation sent to \n'.$email.'.\nPlease save your booking number "+"'.$booking_no.'");</script>';
+		echo '<script type="text/javascript">document.location = "/";</script>';
 	} else {
 		echo '<script type="text/javascript">alert("Sorry something went wrong. Please try again.");</script>';
 	}
@@ -45,16 +54,12 @@ if (isset($_POST['submit'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="keywords" content="table reservation, table booking, restaurant reservation, dinner reservation"/>
 	<title>Table Reservation</title>
-	<script type="text/javascript">
-		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar() { window.scrollTo(0,1); }
-	</script>
 	<link rel="stylesheet" type="text/css" href="./css/style.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" />
 	<link rel="stylesheet" type="text/css" href="./css/wickedpicker.css" media="all" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 </head>
 <body>
 	<h1 class="header-w3ls">Table Reservation</h1>
@@ -69,7 +74,7 @@ if (isset($_POST['submit'])) {
 						<input type="email" name="email" placeholder="Email" required="">
 					</div>
 					<div class="form-right-w3ls ">
-						<input class="buttom" type="text" name="phonenumber" placeholder="Phone Number" required="">
+						<input class="buttom" type="text" name="phone" placeholder="Phone Number" required="">
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -84,7 +89,7 @@ if (isset($_POST['submit'])) {
 				</div>
 				<div class="main">
 					<div class="form-left-w3l">
-						<select class="form-control" name="noadults" required>
+						<select class="form-control" name="adults" required="">
 							<option value="">Number of Adults</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -94,10 +99,12 @@ if (isset($_POST['submit'])) {
 							<option value="6">6</option>
 							<option value="7">7</option>
 							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
 						</select>
 					</div>
 					<div class="form-right-w3ls">
-						<select class="form-control" name="nochildrens" required>
+						<select class="form-control" name="children" required="">
 							<option value="">Number of Children</option>
 							<option value="1">0</option>
 							<option value="1">1</option>
@@ -108,6 +115,8 @@ if (isset($_POST['submit'])) {
 							<option value="6">6</option>
 							<option value="7">7</option>
 							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
 						</select>
 					</div>
 				</div>
@@ -116,10 +125,7 @@ if (isset($_POST['submit'])) {
 				<input type="submit" value="Reserve a Table" name="submit">
 			</div>
 			<div class="copy">
-				<p><a href="check-status.php" target="_blank">Check your Booking</a></p>
-			</div>
-			<div class="copy">
-				<p><a href="admin/" target="_blank">Admin Panel</a></p>
+				<p><a href="reservation.php">Check your Reservation</a></p>
 			</div>
 		</form>
 	</div>
@@ -128,9 +134,13 @@ if (isset($_POST['submit'])) {
 <script type="text/javascript" src="./js/jquery-ui.js"></script>
 <script type="text/javascript" src="./js/wickedpicker.js"></script>
 <script type="text/javascript">
-	$('.timepicker,.timepicker1').wickedpicker({
-		twentyFour: true;
-	});
+	function hideURLbar() {
+		window.scrollTo(0,1);
+	}
+	addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+
+	$('.timepicker,.timepicker1').wickedpicker({ twentyFour: true });
+
 	$(function() {
 		$("#datepicker").datepicker({
 			dateFormat: "yy-mm-dd",

@@ -24,10 +24,4 @@ define('DB_PASSWORD', 'AuJ7k68cXCTnpPSX');	// Password for our database
 define('DB_NAME', 'datikothechef');			// Name of our database
 date_default_timezone_set('Asia/Tbilisi');	// Set our time zone which might be different from the server's time zone
 
-// Connect to database !!! THIS WILL BE REPLACED WITH OUR OOP CLASS LATER IN OUR MAIN CODE !!!
-try {
-	$db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-} catch (mysqli_sql_exception $error) {
-	die($error);
-}
 ?>

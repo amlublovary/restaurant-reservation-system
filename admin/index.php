@@ -19,21 +19,23 @@ require_once('../inc/autoload.php');
 session_start();
 
 // Check if the user is requesting a new login and has provided a username and password.
-if( isset($_POST['login']) && isset($_POST['username']) && isset($_POST['inputpwd']) ) {
+if( isset($_POST['login']) && isset($_POST['username']) && isset($_POST['inputpwd']) && !empty($_POST['username']) && !empty($_POST['inputpwd']) ) {
 
   // Save the username and MD5 encrypted password into a variable for further processing.
   $Username = $dbo->escape( $_POST['username'] );
   $Password = $dbo->escape( md5($_POST['inputpwd']) );
 
   // Check in the database if the login credentials are valid and show a message if they aren't.
-  $dbo->query("SELECT ID, Name, Username, Privilege FROM Admin WHERE Username='$Username' && Password='$Password'");
-  $result = $dbo->fetch();
+  $result = $dbo->fetch("SELECT ID, Name, Username, Privilege FROM Admin WHERE Username='$Username' && Password='$Password'");
   if( $result ) {
     $_SESSION['aid'] = $result['ID'];
     $_SESSION['name'] = $result['Name'];
     $_SESSION['uname'] = $result['Username'];
     $_SESSION['utype'] = $result['Privilege'];
+
+    // Redirect to the Dashboard
     header('location:dashboard.php');
+    die();
   } else {
     echo '<script type="text/javascript">alert("Wrong username or password!");</script>';
   }
@@ -45,10 +47,12 @@ if( isset($_POST['login']) && isset($_POST['username']) && isset($_POST['inputpw
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Restaurant Reservation System | Login</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <link rel="stylesheet" type="text/css" href="../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../dist/css/adminlte.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">

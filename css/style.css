@@ -484,3 +484,12 @@ input[type="submit"]:hover {
         padding: 0px 5px;
     }
 }
+
+@media print {
+    body {
+        background: none !important;
+    }
+    .no-print {
+        display: none !important;
+    }
+}

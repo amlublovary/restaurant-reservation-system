@@ -19,7 +19,7 @@ require_once('../inc/autoload.php');
 session_start();
 
 // Check if user is authenticated and has got a user ID in the current session, or redirect back to the login page.
-if( !isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0 ) { 
+if( !isset($_SESSION['aid']) || strlen($_SESSION['aid'])==0 ) {
   header('location:/admin/');
   die();
 }
@@ -45,16 +45,18 @@ $num_rejected_bookings = $dbo->fetch("SELECT COUNT(ID) FROM Reservation WHERE (S
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Restaurant Reservation System | Dashboard</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <link rel="stylesheet" href="../plugins/jqvmap/jqvmap.min.css">
-  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
-  <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" type="text/css" href="../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" type="text/css" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" type="text/css" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" type="text/css" href="../dist/css/adminlte.min.css">
+  <link rel="stylesheet" type="text/css" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" type="text/css" href="../plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" type="text/css" href="../plugins/summernote/summernote-bs4.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

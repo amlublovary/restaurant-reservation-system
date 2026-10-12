@@ -103,9 +103,14 @@ class DBO {
     }
 
     // This function will return all the results from our MySQL query as an array, and if we have a callback function then we will call that function and add its results to the array.
-	public function fetchAll($callback = null) {
+	public function fetchAll($query = null, $callback = null) {
 	    $params = array();
         $row = array();
+
+        // If we passed an SQL query directly as a parameter then run this query now.
+        if( !empty($query) ) {
+            $this->query($query);
+        }
 
         // Get the metadata for our MySQL query and loop through each field to bind the result to an array.
 	    $meta = $this->query->result_metadata();
